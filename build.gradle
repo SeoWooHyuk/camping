@@ -1,0 +1,65 @@
+plugins {
+	id 'java'
+	id 'war'
+	id 'org.springframework.boot' version '3.1.2'
+	id 'io.spring.dependency-management' version '1.1.2'
+}
+
+group = 'com.backend'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	annotationProcessor 'org.projectlombok:lombok'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.2'
+
+	//jwt토큰
+	implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.5'
+	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.5'
+	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
+
+	//시큐리티
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation group: 'org.springframework.security', name: 'spring-security-core', version: '6.1.0'
+	
+	//스웨거 스프링독스
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
+
+	implementation group: 'org.json', name: 'json', version: '20230227'
+	implementation group: 'com.google.code.gson', name: 'gson', version: '2.10.1'
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.0'
+
+
+
+	// XML 데이터와 Java 객체 간의 매핑을 처리할 수 있도록 지원하는 라이브러리입니다. 
+	//@Valid 등의 어노테이션을 사용하여 입력 데이터의 제약 조건을 검증할 수 있도록 해줍니다.
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.5.6'
+	//Jakarta EE 계획의 일환으로 명시적이거나 암시적인 의존성이 있는 코드를 지원하기 위한 jakarta.xml.bind 모듈의 API 구현을 제공합니다.
+	implementation group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '4.0.0'
+	//Jakarta EE 계획의 일환으로 jakarta.xml.bind 모듈에서 JAXB 구현과 일치하는 jaxb-runtime을 제공합니다. 이를 사용하면 Java 객체와 XML 문서 간의 매핑을 쉽게 구현할 수 있습니다.
+	implementation group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: '4.0.2'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
