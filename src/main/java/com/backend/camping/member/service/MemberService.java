@@ -87,7 +87,7 @@ public class MemberService {
 	}
 
 	public LoginResponse login(LoginRequest req) {
-		authenticate(req.getId(), req.getPwd()); 
+		authenticate(req.getId(), req.getPwd());
 		final UserDetails userDetails = userDetailsService.loadUserByUsername(req.getId());
 		
 		final String token = jwtTokenUtil.generateToken(userDetails); //db에있는 아이디가 시큐리티를 통해 인증되면 jwt토큰 생성
@@ -126,7 +126,6 @@ public class MemberService {
 	}
 
 
-
 	private void authenticate(String id, String pwd) {
 		try {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(id, pwd));
@@ -150,7 +149,7 @@ public class MemberService {
 		}
 	}
 
-	
+
 }
 
 

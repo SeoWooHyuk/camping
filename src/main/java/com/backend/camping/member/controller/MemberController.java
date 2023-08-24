@@ -48,8 +48,7 @@ public class MemberController {
 
 	@PostMapping("/join")
 	public ResponseEntity<JoinResponse> join(@Valid @RequestBody JoinRequest req) {
-
-		System.out.println(req.getId());
+		
 		System.out.println("UserController join " + new Date());
 		return ResponseEntity.ok(service.join(req));
 	}
